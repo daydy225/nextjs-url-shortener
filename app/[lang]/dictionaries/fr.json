@@ -1,0 +1,33 @@
+{
+  "app_title": "Reducteur d'URL",
+  "doc": "Transformez vos longs URL en liens concis et partageables. Notre reducteur d'URL moderne facilite la création et la gestion d'URL raccourcies pour vos besoins.",
+  "toast": {
+      "invalid_url": {
+          "title": "URL invalide",
+          "description": "Veuillez saisir une URL valide, y compris http:// ou https://"
+      },
+      "error": {
+          "title": "Erreur",
+          "description": "Une erreur s'est produite lors du raccourcissement de votre URL. Veuillez réessayer.",
+          "clipboard": "Clipboard access not available in your browser."
+      },
+      "success": {
+          "title": "Succès",
+          "description": "Votre URL a été raccourcie avec succès.",
+          "copy": "L'URL raccourcie a été copiée dans votre presse-papiers.",
+          "copy_error": "Impossible de copier l'URL dans le presse-papiers."
+      }
+  },
+  "card": {
+      "title": "Raccourcir votre URL",
+       "description": "Saisissez une longue URL ci-dessous pour créer une version raccourcie."
+  },
+  "form": {
+      "input_placeholder": "https://exemple.com/tres-longue-url",
+      "button": "Raccourcir",
+      "loading": "Raccourcissement"
+  },
+  "shortened_url": {
+      "title": "URL raccourcie"
+  }
+}
