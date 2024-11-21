@@ -20,14 +20,24 @@ export const metadata: Metadata = {
 
 interface RootLayoutProps {
   children: React.ReactNode;
+  params: {
+    lang: Locale;
+  };
 }
 
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
+import { Locale } from "./dictionaries";
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default async function RootLayout({
+  children,
+  params,
+}: RootLayoutProps) {
+  const { lang } = await params;
+
   return (
     <>
-      <html lang="en" suppressHydrationWarning>
+      <html lang={lang} suppressHydrationWarning>
         <head />
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -38,6 +48,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             enableSystem
             disableTransitionOnChange
           >
+            <Toaster />
             {children}
           </ThemeProvider>
         </body>

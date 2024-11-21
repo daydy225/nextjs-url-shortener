@@ -9,7 +9,8 @@ interface HomeProps {
   };
 }
 
-export default async function Home({ params: { lang } }: HomeProps) {
+export default async function Home({ params }: HomeProps) {
+  const { lang } = await params;
   const dict = await getDictionary(lang);
 
   return (
@@ -22,13 +23,13 @@ export default async function Home({ params: { lang } }: HomeProps) {
           <div className="flex items-center space-x-2">
             <Link className="h-8 w-8 text-primary" />
             <h1 className="text-4xl font-bold tracking-tight">
-              {dict.app_title}
+              {dict.app_title as string}
             </h1>
           </div>
           <p className="text-lg text-muted-foreground text-center max-w-2xl">
-            {dict.doc}
+            {dict.doc as string}
           </p>
-          <URLShortener />
+          <URLShortener dict={dict} />
         </div>
       </div>
     </main>

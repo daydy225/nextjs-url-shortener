@@ -1,21 +1,23 @@
 "use client";
 
+import { Dictionary } from "@/app/[lang]/dictionaries";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Copy } from "lucide-react";
 
 type ShortenedURLProps = {
   url: string;
+  dict: Dictionary;
 };
 
-export function ShortenedURL({ url }: ShortenedURLProps) {
+export function ShortenedURL({ url, dict }: ShortenedURLProps) {
   const { toast } = useToast();
 
   const copyToClipboard = async () => {
     if (!navigator?.clipboard) {
       toast({
-        title: "Error",
-        description: "Clipboard access not available in your browser.",
+        title: dict.error_title.toString(),
+        description: dict.clipboard_error.toString(),
         variant: "destructive",
       });
       return;
@@ -24,14 +26,14 @@ export function ShortenedURL({ url }: ShortenedURLProps) {
     try {
       await navigator.clipboard.writeText(url);
       toast({
-        title: "Success",
-        description: "The shortened URL has been copied to your clipboard.",
+        title: dict.success_title.toString(),
+        description: dict.success_description.toString(),
       });
     } catch (error) {
       const errorMessage =
         error instanceof Error
           ? error.message
-          : "Failed to copy URL to clipboard.";
+          : dict.error_description.toString();
 
       toast({
         title: "Error",
@@ -47,7 +49,7 @@ export function ShortenedURL({ url }: ShortenedURLProps) {
       <div className="flex items-center justify-between">
         <div className="truncate mr-4">
           <p className="text-sm font-medium text-muted-foreground">
-            Shortened URL:
+            {dict.app_title as string}:
           </p>
           <p className="text-primary font-medium">{url}</p>
         </div>

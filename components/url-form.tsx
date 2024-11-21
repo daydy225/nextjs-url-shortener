@@ -1,5 +1,6 @@
 "use client";
 
+import { Dictionary } from "@/app/[lang]/dictionaries";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -21,9 +22,10 @@ const formSchema = z.object({
 type URLFormProps = {
   onSubmit: (url: string) => Promise<void>;
   isLoading: boolean;
+  dict: Dictionary;
 };
 
-export function URLForm({ onSubmit, isLoading }: URLFormProps) {
+export function URLForm({ onSubmit, isLoading, dict }: URLFormProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -47,7 +49,7 @@ export function URLForm({ onSubmit, isLoading }: URLFormProps) {
               <FormControl>
                 <div className="flex space-x-2">
                   <Input
-                    placeholder="https://example.com/very-long-url"
+                    placeholder={dict.form_input_placeholder as string}
                     {...field}
                     className="flex-1"
                   />
@@ -55,10 +57,10 @@ export function URLForm({ onSubmit, isLoading }: URLFormProps) {
                     {isLoading ? (
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Shortening
+                        {dict.loading}
                       </>
                     ) : (
-                      "Shorten"
+                      `${dict.button}`
                     )}
                   </Button>
                 </div>

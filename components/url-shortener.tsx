@@ -1,5 +1,6 @@
 "use client";
 
+import { Dictionary } from "@/app/[lang]/dictionaries";
 import { ShortenedURL } from "@/components/shortened-url";
 import {
   Card,
@@ -18,7 +19,7 @@ interface URLShortenerState {
   error: string | null;
 }
 
-export function URLShortener() {
+export function URLShortener({ dict }: { dict: Dictionary }) {
   const [state, setState] = useState<URLShortenerState>({
     shortUrl: "",
     isLoading: false,
@@ -44,8 +45,8 @@ export function URLShortener() {
   async function onSubmit(url: string) {
     if (!isValidUrl(url)) {
       toast({
-        title: "Invalid URL",
-        description: "Please enter a valid URL including http:// or https://",
+        title: dict.toast_invalid_url_title.toString(),
+        description: dict.toast_invalid_url_description.toString(),
         variant: "destructive",
       });
       return;
@@ -69,16 +70,18 @@ export function URLShortener() {
       setState((prev) => ({ ...prev, shortUrl: shortened }));
 
       toast({
-        title: "Success!",
-        description: "Your URL has been shortened successfully.",
+        title: dict.success_title.toString(),
+        description: dict.success_description.toString(),
       });
     } catch (error) {
       const errorMessage =
-        error instanceof Error ? error.message : "An unknown error occurred";
+        error instanceof Error
+          ? error.message
+          : `${dict.toast_invalid_url_title}`;
       setState((prev) => ({ ...prev, error: errorMessage }));
 
       toast({
-        title: "Error",
+        title: dict.toast_invalid_url_title.toString(),
         description: errorMessage,
         variant: "destructive",
       });
@@ -90,14 +93,12 @@ export function URLShortener() {
   return (
     <Card className="w-full max-w-2xl shadow-lg">
       <CardHeader>
-        <CardTitle>Shorten Your URL</CardTitle>
-        <CardDescription>
-          Enter a long URL below to create a shortened version.
-        </CardDescription>
+        <CardTitle>{dict.card_title as string}</CardTitle>
+        <CardDescription>{dict.card_description as string}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
-        <URLForm onSubmit={onSubmit} isLoading={state.isLoading} />
-        {state.shortUrl && <ShortenedURL url={state.shortUrl} />}
+        <URLForm onSubmit={onSubmit} isLoading={state.isLoading} dict={dict} />
+        {state.shortUrl && <ShortenedURL url={state.shortUrl} dict={dict} />}
         {state.error && <p className="text-sm text-red-500">{state.error}</p>}
       </CardContent>
     </Card>

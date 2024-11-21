@@ -1,32 +1,20 @@
 {
     "app_title": "URL Shortener",
     "doc": "Transform your long URLs into concise, shareable links. Our modern URL shortener makes it easy to create and manage shortened URLs for your needs.",
-    "toast": {
-        "invalid_url": {
-            "title": "Invalid URL",
-            "description": "Please enter a valid URL including http:// or https://"
-        },
-        "error": {
-            "title": "Error",
-            "description": "An error occurred while shortening your URL. Please try again.",
-            "clipboard": "Clipboard access not available in your browser."
-        },
-        "success": {
-            "title": "Success",
-            "description": "Your URL has been shortened successfully.",
-            "copy": "The shortened URL has been copied to your clipboard.",
-            "copy_error": "Failed to copy URL to clipboard."
-        }
-    },
-    "card": {
-        "title": "Shorten Your URL",
-         "description": "Enter a long URL below to create a shortened version."
-    },
-    "form": {
-        "input_placeholder": "https://example.com/very-long-url",
-        "button": "Shorten",
-        "loading": "Shortening"
-    },
+    "toast_invalid_url_title": "Invalid URL",
+    "toast_invalid_url_description": "Please enter a valid URL including http:// or https://",
+    "error_title": "Error",
+    "error_description": "An error occurred while shortening your URL. Please try again.",
+    "clipboard_error": "Clipboard access not available in your browser.",
+    "success_title": "Success",
+    "success_description": "Your URL has been shortened successfully.",
+    "success_copy": "The shortened URL has been copied to your clipboard.",
+    "copy_error": "Failed to copy URL to clipboard.",
+    "card-title": "Shorten Your URL",
+    "card-description": "Enter a long URL below to create a shortened version.",
+    "form_input_placeholder": "https://example.com/very-long-url",
+    "button": "Shorten",
+    "loading": "Shortening",
     "shortened_url": {
         "title": "Shortened URL"
     }
